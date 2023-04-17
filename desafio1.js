@@ -3,6 +3,7 @@ class ProductManager {
     // Atributos privados
     #id = 0
     #codeVerify = false;
+    #idVerify = false;
 
 
     constructor() {
@@ -57,11 +58,38 @@ class ProductManager {
 
     }
 
+
     //Metodo privado para incrementar el ID + 1
     #getID() {
         this.#id++
         return this.#id
     }
+
+    // Metodo para buscar productos por ID
+    getProductByID(id) {
+        let index = 0;
+
+        // Recorre el array productos para buscar el ID ingresado
+        this.products.forEach(element => {
+            if (element.id === id) {
+                index = this.products.indexOf(element); // Guarda el indice del ID encontrado para poder mostrar el producto posteriormente
+                this.#idVerify = true;
+            }
+        });
+
+        // Si el ID ingresado coincide con el de un producto del array muestra dicho proucto 
+        if (this.#idVerify) {
+            console.log(` *** Se encontró el siguiente producto con el ID ${id}`);
+            console.log(this.products[index]) // Se muestra el producto por el indice obtenido
+            this.#idVerify = false;
+
+        // Si el ID no coincide, muestra un mensaje de error.
+        } else {
+            console.log(`No se encontró ningún producto con el ID ${id}`);
+        }
+    }
+    
+    
 }
 
 // Pruebas 
@@ -71,6 +99,7 @@ const productManager = new ProductManager();
 
 productManager.addProducts("Producto de prueba", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25);
 // productManager.addProducts("Producto de prueba2", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25); // Producto con el mismo codigo que la linea de arriba.-
-// productManager.addProducts("Producto de prueba3", "Este es un producto de prueba", 200, "Sin imagen", "abc222", 25);
+productManager.addProducts("Producto de prueba3", "Este es un producto de prueba", 200, "Sin imagen", "abc222", 25);
 console.log("A continuación se muestra la lista de productos existente:")
 console.log(productManager.getProducts())
+productManager.getProductByID(2)
