@@ -98,8 +98,11 @@ const productManager = new ProductManager();
 // ** Comentar y descomentar las siguientes líneas para probar la funcionalidad del programa ***
 
 productManager.addProducts("Producto de prueba", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25);
-// productManager.addProducts("Producto de prueba2", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25); // Producto con el mismo codigo que la linea de arriba.-
+productManager.addProducts("Producto de prueba2", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25); // Producto con el mismo codigo que la linea de arriba.-
 productManager.addProducts("Producto de prueba3", "Este es un producto de prueba", 200, "Sin imagen", "abc222", 25);
+
 console.log("A continuación se muestra la lista de productos existente:")
 console.log(productManager.getProducts())
+
+// Buscar por ID de producto. Ingresar el ID como parámetro.
 productManager.getProductByID(2)
