@@ -25,7 +25,7 @@ class ProductManager {
         }
 
         // Verifica que se hayan ingreasado todos los datos requeridos. Si no se ingresó algun dato, devuelve un mensaje de error.
-        if (title === undefined || description === undefined || price === undefined || thumbnail === undefined || code === undefined || stock === undefined){
+        if (!title || !description || !price || !thumbnail || !code || !stock){
             console.log("Verifique que todos los datos estén completos.")
 
         // Si todos los datos están ingresados continúa la ejecución del código.
@@ -99,7 +99,7 @@ const productManager = new ProductManager();
 
 productManager.addProducts("Producto de prueba", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25);
 productManager.addProducts("Producto de prueba2", "Este es un producto de prueba", 200, "Sin imagen", "abc123", 25); // Producto con el mismo codigo que la linea de arriba.-
-productManager.addProducts("Producto de prueba3", "Este es un producto de prueba", 200, "Sin imagen", "abc222", 25);
+productManager.addProducts("Producto de prueba3", "Este es un producto de prueba", 200, "Sin imagen", "abc222");
 
 console.log("A continuación se muestra la lista de productos existente:")
 console.log(productManager.getProducts())
