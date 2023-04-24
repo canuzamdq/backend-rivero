@@ -9,11 +9,11 @@ class ProductManager {
   // Función asincrónica para verificar si el archivo existe. Si no existe, lo crea.
   async init() {
     try {
-      await fs.promises.access('productos.json', fs.constants.F_OK);
+      await fs.promises.access(this.path, fs.constants.F_OK);
       console.log('El archivo JSON existe.');
     } catch (err) {
       console.log('El archivo JSON no existe. Creando archivo...');
-      await fs.promises.writeFile('./productos.json', JSON.stringify([]));
+      await fs.promises.writeFile(this.path, JSON.stringify([]));
       console.log('El archivo JSON ha sido creado.');
     }
   }
