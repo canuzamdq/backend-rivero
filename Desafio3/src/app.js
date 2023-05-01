@@ -14,7 +14,7 @@ app.get('/products', async (req, res) =>{
         let allProducts = await productManager.getProducts();
         let limit = req.query.limit;
 
-        !limit ? res.send(allProducts) : res.send(allProducts.splice(0, limit));
+        !limit ? res.send(allProducts) : res.send(allProducts.slice(0, limit));
 
     } catch(err) {
         console.log(err);
