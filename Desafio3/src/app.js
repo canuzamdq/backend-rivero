@@ -22,7 +22,7 @@ app.get('/products', async (req, res) =>{
     
 })
 
-//req params: permite buscar un poructo por su ID- EJ: http://localhost:8080/products/2
+//req.params: permite buscar un poructo por su ID- EJ: http://localhost:8080/products/2
 
 app.get('/products/:id', async (req, res) => {
     try {
