@@ -23,15 +23,16 @@ export default class ProductManager {
       const fileContents = fs.readFileSync(this.path, 'utf-8');
       return JSON.parse(fileContents);
     } catch (err) {
-      return err;
+      console.log(err);
     }
   }
 
   async addProduct(product) {
     try {
-      if (!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock){
-        return 'Verifique que todos los datos estén completos';
-      } else {
+      if (!product.title || !product.description || !product.code || !product.price  || !product.stock|| !product.category){
+        console.log('Verifique que todos los datos estén completos');
+        return newProduct;
+      } 
         const products = await this.getProducts();
         for (let i = 0; i < products.length; i++) {
           if (product.code === products[i].code) {
@@ -40,11 +41,11 @@ export default class ProductManager {
         }
         const lastProduct = products[products.length - 1];
         const id = lastProduct ? lastProduct.id + 1 : 1;
-        const newProduct = { id, ...product };
+        const newProduct = { id, status:true, ...product };
         products.push(newProduct);
         await fs.promises.writeFile(this.path, JSON.stringify(products));
         return newProduct;
-      }
+      
     } catch(err) {
       console.log(err);
     }  
@@ -56,11 +57,9 @@ export default class ProductManager {
     try {
       const products = await this.getProducts();
       const product = await products.find((product) => product.id === id);
-      return product
-        ? product
-        : '*** No se ha encontrado un producto con el ID indicado';
+      return product ? product : '*** No se ha encontrado un producto con el ID indicado';
     } catch (err) {
-      return err;
+      console.log(err);
     }
   }
 

@@ -5,22 +5,15 @@ const productsRouter = Router();
 
 const productManager = new ProductManager();
 
-//uso de middleware para que evitar que se modifique o elimine el ID de un producto
-productsRouter.use((req, res, next) => {
-	// si se recibe el ID en el body se envía emnsaje de error
-	if (req.body.id) {
-		// Retorno un error
-		res.status(403).send('Campo ID reservado. No se puede actualizar o agregar');
-	}
-	next();
-});
+
+
 
 // req.query: permite establecer un limite de productos a mostrar. Ej:   http://localhost:8080/api/products/?limit=4
 // Si no se especifica limite muestra todos los productos
 productsRouter.get('/', async (req, res) =>{
     try {
-        let allProducts = await productManager.getProducts();
-        let limit = req.query.limit;
+        const allProducts = await productManager.getProducts();
+        const limit = req.query.limit;
 
         !limit ? res.send(allProducts) : res.send(allProducts.slice(0, limit));
 
@@ -53,10 +46,15 @@ productsRouter.put('/:pid', async (req, res) => {
 })
 
 // post para agregar productos
-productsRouter.post('/', (req, res) => {
-	const product = req.body;
-	productManager.addProduct(product);
-	res.status(201).send(product);
+productsRouter.post('/', async (req, res) => {
+    try {
+        const product = req.body;
+        await productManager.addProduct(product);
+        res.status(201).send(product);
+    }catch(err) {
+        console.log(err);
+    }
+	
 });
 
 

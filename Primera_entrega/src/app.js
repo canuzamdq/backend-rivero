@@ -1,5 +1,6 @@
 import express from 'express';
 import { productsRouter } from './routes/products.router.js';
+import { cartsRouter } from './routes/carts.router.js';
 
 
 // Creo app Express
@@ -15,6 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Utilizo ruta de products para "/api/products"
 app.use('/api/products', productsRouter);
+
+// Utiliza ruta de cartspara "/api/carts"
+app.use('/api/carts', cartsRouter);
 
 
 
