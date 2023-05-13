@@ -25,8 +25,8 @@ cartsRouter.post('/', async (req, res) => {
 //req.params: permite buscar un carrito por su ID para ver los productos que contiene. EJ: http://localhost:8080/api/carts/2
 cartsRouter.get('/:cid', async (req, res) => {
     try {
-        const cartById = await cartManager.getCartProductsByID(parseInt(req.params.cid));
-        res.status(201).send(cartById);
+        const cartById = await cartManager.getCartByID(parseInt(req.params.cid));
+        res.status(201).send(await cartById);
     }catch(err) {
         console.log(err);
     }
@@ -35,10 +35,8 @@ cartsRouter.get('/:cid', async (req, res) => {
 // Agrega un producto al carrito. Recibe como parametro id del carrio (cid) y el id del producto (pid)
 cartsRouter.post('/:cid/product/:pid' , async (req, res) => {
     try {
-        const cartID = parseInt(req.params.cid);
-        const productID = parseInt(req.params.pid);
-        const newProduct = await cartManager.addToCart(cartID, productID);
-        return res.status(201).send(newProduct);
+        const newProduct = await cartManager.addToCart(parseInt(req.params.cid), parseInt(req.params.pid));
+        return res.status(201).send(await newProduct);
     }catch(err){
         console.log(err);
     }
