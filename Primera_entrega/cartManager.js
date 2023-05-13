@@ -1,7 +1,7 @@
 import fs from 'fs';
-import ProductManager from './productManager.js';
 
-const productManager = new ProductManager();
+import ProductManager from './productManager.js'
+const productManager = new ProductManager;
 
 export default class CartManager {
     constructor() {
@@ -25,6 +25,7 @@ export default class CartManager {
 
     }
 
+
     async newCart() {
         try {
             const carts = await this.getCarts();
@@ -43,6 +44,7 @@ export default class CartManager {
         }
     }
 
+
     async getCartByID(id) {
         try {
             const carts = await this.getCarts();
@@ -53,12 +55,21 @@ export default class CartManager {
             console.log(err);
         }
     }
+
+
     async addToCart(cid, pid) {
         try {
             const carts = await this.getCarts();
             const cart = carts.find((cart) => cart.id === parseInt(cid));
 
             if (! cart) {
+                throw new Error('No se encuentra carrito con el ID indicado');
+            }
+
+            const products = await productManager.getProducts();
+            const product = await products.find((product) => product.id === parseInt(pid));
+
+            if (! product) {
                 throw new Error('No se encuentra carrito con el ID indicado');
             }
 
@@ -71,9 +82,8 @@ export default class CartManager {
             }
 
             await fs.promises.writeFile(this.path, JSON.stringify(carts));
-            console.log(JSON.stringify(carts));
-
             return cart.products; // Devuelve los productos actualizados del carrito
+            
         } catch (err) {
             console.log(err);
         }
