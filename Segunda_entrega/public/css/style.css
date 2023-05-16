@@ -1,0 +1,18 @@
+#main {
+    width: 100%;
+    display: flex;
+
+}
+
+#addProduct {
+    width: 50%;
+    height: 400px;
+    background-color: yellow;
+}
+
+#realTimeProducts {
+    width: 50%;
+    height: 400px;
+    background-color: blue;
+    overflow-y: auto;
+}
