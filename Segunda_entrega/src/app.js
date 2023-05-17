@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 
 import ProductManager from '../productManager.js';
 const productmanager = new ProductManager;
+const product = [];
 
 
 //Routes
@@ -34,7 +35,6 @@ app.use('/realtimeproducts', viewsRouter) // HANDLREBARS + SOKET IO
 
 
 
-
 // Escucho puero 8080
 const webServer = app.listen(8080, () => {
     console.log('Escuchando puerto 8080...');
@@ -43,13 +43,22 @@ const webServer = app.listen(8080, () => {
 // Inicialización de socket.io
 const io = new Server(webServer);
 
+// Cuando se conecta un cliente se envia la lista de productos
 io.on('connection', async (socket) =>{
     try {
-        const products = productmanager.getProducts();
-        socket.emit('realTimeProducts', products);
+        socket.emit('realTimeProducts', await productmanager.getProducts());
     }catch(err) {
         console.log(err)
     }
+
+    socket.on('addProduct', async (product) =>{
+        try {
+            await productmanager.addProduct(product);
+        }catch(err){
+            console.log(err);
+        }
+        
+    }) 
     
 })
 
