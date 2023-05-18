@@ -57,8 +57,27 @@ io.on('connection', async (socket) =>{
         }catch(err){
             console.log(err);
         }
-        
+    
     }) 
+
+    socket.on('deleteProduct', async (productId) => {
+        try{
+            await productmanager.deleteProduct(productId);
+        }catch(err) {
+            console.log(err)
+        }
+
+    socket.on('modifyProduct', async (productId) => {
+        try {
+            await productmanager.updateProduct(productId)
+        } catch(err) {
+            console.log(err);
+        }
+    })
+        
+    })
+
+
     
 })
 

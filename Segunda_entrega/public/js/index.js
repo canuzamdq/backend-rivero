@@ -2,15 +2,16 @@ const socket = io();
 let newProduct = document.getElementById('form');
 
 
+
 function render(data) {
 	// Genero el html
 	const html = data
 		.map((elem, index) => {
 			// Recorro el array de productos y genero el html
-			return `<div id="divProductos">
+			return `<div id="divProductos" data-id="${index}">
 				<strong>${elem.title} </strong>
                 <em>${elem.category} </em>
-				<em>${elem.descripcion} </em>
+				<em>${elem.description} </em>
 				<em>$${elem.price} </em>
 				<em>${elem.code} </em>
 				<em>${elem.stock} </em>
@@ -20,14 +21,20 @@ function render(data) {
 
 	// Inserto el html en el elemento con id realTimeProducts
 	document.getElementById('realTimeProducts').innerHTML = html;
+
+	socket.emit('deleteProduct', productId);
+	socket.emit('modifyProduct', productId);
+    
+
 }
+
 
 newProduct.addEventListener('submit', (event) => {
 	event.preventDefault();
   
 	const title = document.querySelector('input[name="title"]').value;
 	const category = document.querySelector('input[name="category"]').value;
-	const descripcion = document.querySelector('input[name="description"]').value;
+	const description = document.querySelector('input[name="description"]').value;
 	const price = document.querySelector('input[name="price"]').value;
 	const code = document.querySelector('input[name="code"]').value;
 	const stock = document.querySelector('input[name="stock"]').value;
@@ -35,14 +42,14 @@ newProduct.addEventListener('submit', (event) => {
 	const product = {
 	  title,
 	  category,
-	  descripcion,
+	  description,
 	  price,
 	  code,
 	  stock
 	};
   
 	socket.emit('addProduct', product);
-	newProduct = "";
+	newProduct.reset();
 	Swal.fire({
 		title: 'Alta de producto',
 		text: '¡Producto agregado!',

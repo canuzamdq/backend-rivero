@@ -76,3 +76,11 @@
     justify-content: space-between;
 
 }
+
+#delProduct {
+    background-color: red;
+    color: azure;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
