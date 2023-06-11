@@ -22,10 +22,9 @@ function render(data) {
 	// Inserto el html en el elemento con id realTimeProducts
 	document.getElementById('realTimeProducts').innerHTML = html;
 
-	socket.emit('deleteProduct', productId);
-	socket.emit('modifyProduct', productId);
-    
-
+	socket.on('deleteProduct', (data) => render(data));
+	socket.on('modifyProduct', (data) => render(data));
+	
 }
 
 

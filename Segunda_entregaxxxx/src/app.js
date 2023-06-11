@@ -4,7 +4,6 @@ import { Server } from 'socket.io';
 
 import ProductManager from '../productManager.js';
 const productmanager = new ProductManager;
-const product = [];
 
 
 //Routes
@@ -60,14 +59,14 @@ io.on('connection', async (socket) =>{
     
     }) 
 
-    socket.on('deleteProduct', async (productId) => {
+    socket.emit('deleteProduct', async (productId) => {
         try{
             await productmanager.deleteProduct(productId);
         }catch(err) {
             console.log(err)
         }
 
-    socket.on('modifyProduct', async (productId) => {
+    socket.emit('modifyProduct', async (productId) => {
         try {
             await productmanager.updateProduct(productId)
         } catch(err) {
