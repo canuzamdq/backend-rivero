@@ -6,7 +6,7 @@ const chatSchema = new mongoose.Schema({
   timestamp: { type: Date, default: Date.now },
 });
 
-const chatModel = mongoose.model('chats', chatSchema);
+const chatModel = mongoose.model('messages', chatSchema);
 
 export default chatModel;
 
