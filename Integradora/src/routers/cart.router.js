@@ -6,7 +6,7 @@ const cartRouter = Router();
 cartRouter.get('/', async (req, res) => {
 	try {
 		const cart = await cartServices.getAllCarts();
-		res.send(cart);
+		res.status(201).send(cart);
 	} catch (error) {
 		res.status(500).send(error);
 	}
@@ -15,8 +15,8 @@ cartRouter.get('/', async (req, res) => {
 cartRouter.post('/', async (req, res) => {
 	const cart = req.body;
 	try {
-		const newCart = await cartServices.addToCart(cart);
-		res.send(newCart);
+		const newCart = await cartServices.addCart(cart);
+		res.status(201).send(newCart);
 	} catch (error) {
 		res.status(500).send(error);
 	}
@@ -26,7 +26,7 @@ cartRouter.post('/:cartId', async (req, res) => {
 	const productId = req.body.pId;
 	try {
 		const cartAdd = await cartServices.addProductToCart(cartId, productId);
-		res.send(cartAdd);
+		res.status(201).send(cartAdd);
 	} catch (error) {
 		res.status(500).send(error);
 	}

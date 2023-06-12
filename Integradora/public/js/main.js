@@ -1,21 +1,20 @@
 const socket = io();
 
-if (page === 'products') {
+if (page === 'products') { //  page se serea desde la vista en habdlebars
 	let newProduct = document.getElementById('carga');
 
 function render(data) {
 	let html = data
 		.map((elem, index) => {
 			return `<div id='divProducts' data-id="${index}" >
-			<strong>${elem.title}</strong>
-			<em>${elem.description}</em>
-			<em>${elem.code}</em>
-			<em>${elem.price}</em>
-			<em>${elem.stock}</em>
-			<em>${elem.category}</em>
-			<em>${elem.thumbnail}</em>
-			<em>${elem.status}</em>
-			
+        <strong>${elem.title}</strong>
+        <em>${elem.description}</em>
+        <em>${elem.code}</em>
+        <em>${elem.price}</em>
+        <em>${elem.stock}</em>
+        <em>${elem.category}</em>
+        <em>${elem.thumbnail}</em>
+        <em>${elem.status}</em>
 			</div>`;
 		})
 		.join(' ');
@@ -46,7 +45,7 @@ socket.on('realTimeProducts', (product) => {
 
 
 // **** chat **** //
-if (page === 'chat') {
+if (page === 'chat') { //  page se serea desde la vista en habdlebars
 	let user;
 const inputMSJ = document.getElementById('msj');
 const sendBtn = document.getElementById('sendBtn');
@@ -55,7 +54,7 @@ const sendBtn = document.getElementById('sendBtn');
 Swal.fire({
   title: 'Bienvenido',
   input: 'text',
-  text: 'Identifícate para participar en el PiolaChat',
+  text: 'Identifícate para participar en el chat',
   icon: 'success',
   inputValidator: (value) => {
     return !value && 'Debes identificarte para participar.';

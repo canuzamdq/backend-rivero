@@ -5,9 +5,9 @@ class CartService {
 		this.model = cartModel;
 	}
 
-	async addToCart(cart) {
-		cart.products = [];
-		this.model.create(cart);
+	async addCart(cart) {
+		//cart.products = [];
+		return await this.model.create(cart);
 	}
 
 	async getAllCarts() {
@@ -18,8 +18,7 @@ class CartService {
 	async addProductToCart(cartId, productId) {
 		const cart = await this.model.findOne({ _id: cartId });
 		const product = await productService.getProductById(productId);
-		cart.products.push(product);
-
+		cart.products.push({product: product});
 		return await cart.save();
 	}
 }
