@@ -39,11 +39,12 @@
 				<button type="submit" class="btn btn-primary">Enviar</button>
 			</div>
 
-		<div id="realTimeProducts"></div>
-{{!-- 
+		
+ 
     <div class="col-md-12">
         <h1>Products</h1>
-        <table class='table'>
+		<div ></div>
+        <table class='table' >
 			<thead>
 				<tr>
 					<th scope='col'>ID</th>
@@ -57,26 +58,12 @@
 					<th scope='col'>Thumbnail</th>
 				</tr>
 			</thead>
-			<tbody>
-				{{#each products}}
-					<tr>
-						<th scope='row'>{{this._id}}  </th>
-						<td>{{this.title}} </td>
-						<td>{{this.description}} </td>
-						<td>{{this.code}} </td>
-						<td>{{this.price}} </td>
-						<td>{{this.stock}} </td>
-						<td>{{this.status}} </td>
-						<td>{{this.category}} </td>
-						<td>{{this.thumbnail}} </td>
-					</tr>
-				{{/each}}
-			</tbody>
+			<tbody id="realTimeProducts"></tbody>
 		</table>
 	</div>
 
 
-    </div> --}}
+    </div> 
 </div>
 <script> var page = 'products' </script>
 <script

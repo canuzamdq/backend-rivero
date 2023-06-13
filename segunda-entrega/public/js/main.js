@@ -6,16 +6,18 @@ if (page === 'products') { //  page se serea desde la vista en habdlebars
 function render(data) {
 	let html = data
 		.map((elem, index) => {
-        return `<div id='divProducts' data-id="${index}" >
-          <strong>${elem.title}</strong>
-          <em>${elem.description}</em>
-          <em>${elem.code}</em>
-          <em>${elem.price}</em>
-          <em>${elem.stock}</em>
-          <em>${elem.category}</em>
-          <em>${elem.thumbnail}</em>
-          <em>${elem.status}</em>
-        </div>`;
+        return `
+        <tr data-id="${index}">
+          <th scope='row'>${elem._id}  </th>
+          <td>${elem.title} </td>
+          <td>${elem.description} </td>
+          <td>${elem.code} </td>
+          <td>${elem.price} </td>
+          <td>${elem.stock} </td>
+          <td>${elem.status} </td>
+          <td>${elem.category} </td>
+          <td>${elem.thumbnail} </td>
+        </tr>`;
 		})
 		.join(' ');
 
@@ -38,8 +40,8 @@ newProduct.addEventListener('submit', (e) => {
 	newProduct.reset();
 });
 
-socket.on('realTimeProducts', () => {
-	return render(data);
+socket.on('realTimeProducts', (product) => {
+	return render(product.docs);
 });
 }
 
