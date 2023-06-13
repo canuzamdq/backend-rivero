@@ -5,8 +5,8 @@ class ProductService {
 		this.productModel = productModel;
 	}
 
-	async getAllProducts() {
-		return await this.productModel.paginate();
+	async getAllProducts(limit=5, page=1) {
+		return await this.productModel.paginate({}, { lean: true, limit, page}); //lean: transforma la respuesta bson en js plano.
 	}
 
 	async addProduct(product) {

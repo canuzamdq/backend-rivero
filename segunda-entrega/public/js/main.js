@@ -1,6 +1,6 @@
 const socket = io();
 
-if (page === 'products') { //  page se serea desde la vista en habdlebars
+if (page === 'products') { //  page se setea desde la vista en habdlebars
 	let newProduct = document.getElementById('carga');
 
 function render(data) {
@@ -47,7 +47,7 @@ socket.on('realTimeProducts', (product) => {
 
 
 // **** chat **** //
-if (page === 'chat') { //  page se serea desde la vista en habdlebars
+if (page === 'chat') { //  page se setea desde la vista en habdlebars
 	let user;
 const inputMSJ = document.getElementById('msj');
 const sendBtn = document.getElementById('sendBtn');
