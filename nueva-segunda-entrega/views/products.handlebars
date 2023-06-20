@@ -39,12 +39,12 @@
 					{{#if hasPrevPage}}<li class="page-item"> {{else}}
 					<li class="page-item disabled">{{/if}}
 						<a class="page-link"
-							href="?limit={{limit}}&page={{prevPage}}&status={{status}}&category={{category}}">Previous</a>
+							href="?limit={{limit}}&page={{prevPage}}&status={{status}}&category={{category}}&sort={{sort}}">Previous</a>
 					</li>
 
 					<li class="page-item">
 						<a class="page-link"
-							href="?limit={{limit}}&page={{prevPage}}&status={{status}}&category={{category}}">{{prevPage}}</a>
+							href="?limit={{limit}}&page={{prevPage}}&status={{status}}&category={{category}}&sort={{sort}}">{{prevPage}}</a>
 					</li>
 
 					<li class="page-item active" aria-current="page">
@@ -53,13 +53,13 @@
 
 					<li class="page-item">
 						<a class="page-link"
-							href="?limit={{limit}}&page={{nextPage}}&status={{status}}&category={{category}}">{{nextPage}}</a>
+							href="?limit={{limit}}&page={{nextPage}}&status={{status}}&category={{category}}&sort={{sort}}">{{nextPage}}</a>
 					</li>
 
 					{{#if hasNextPage}}<li class="page-item">{{else}}
 					<li class="page-item disabled">{{/if}}
 						<a class="page-link"
-							href="?limit={{limit}}&page={{nextPage}}&status={{status}}&category={{category}}">Next</a>
+							href="?limit={{limit}}&page={{nextPage}}&status={{status}}&category={{category}}&sort={{sort}}">Next</a>
 					</li>
 				</ul>
 			</nav>

@@ -5,15 +5,16 @@ const producRouter = Router();
 
 
 producRouter.get('/', async (req, res) => {
-    const {limit, page, status, category} = req.query;
+    const {limit, page, status, category, sort} = req.query;
 
     try {
-        const products = await productService.getAllProducts(limit, page, status, category);
+        const data = await productService.getAllProducts(limit, page, status, category, sort);
         // Agrega status y category a docs
-        products.status = status;
-        products.category = category;
-        console.log(products)
-        res.status(201).render('products', products);
+        data.status = status;
+        data.category = category;
+        data.sort = sort;
+        console.log(data)
+        res.status(201).render('products', data);
     } catch (err) {
         res.status(500).send(err);
     }
