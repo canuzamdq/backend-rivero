@@ -67,6 +67,30 @@
 
 
 		<div class="col-6">
+			<h3>Filtros</h3>
+			<form  >
+				<h4>Categorias</h4>
+				<div class="col-6">
+					<select class='form-select' aria-label='Category' name='category' required='true' />
+						<option selected value="accesorios">Accesorios</option>
+						<option value="notebook">Notebooks</option>
+						<option value="monitores">Monitores</option>
+					</select>
+				<h4>Status</h4>
+				<div class="col-6">
+					<select class='form-select' aria-label='Status' name='status' required='true' />
+						<option selected value="true">True</option>
+						<option value="false">False</option>
+					</select>
+				
+				<button type='submit' class=' btn btn-primary form-control'>
+					Filtrar
+				</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-6">
 			<h2>Alta de Producto</h2>
 			<form action='/api/products' method='post'>
 				<div class='row'>
@@ -91,17 +115,15 @@
 					</div>
 					<div class="col-6">
 						<select class='form-select' aria-label='Status' name='status' required='true' />
-						<option selected>Status</option>
-						<option value="true">True</option>
+						<option selected value="true">True</option>
 						<option value="false">False</option>
 						</select>
 					</div>
 					<div class='col-6'>
 						<select class="form-select" aria-label="Default select example" name="category"
 							required='true' />
-						<option selected>Categoria</option>
 						<option value="monitores">Monitores</option>
-						<option value="accesorios">Accesorios</option>
+						<option selected value="accesorios">Accesorios</option>
 						<option value="tablets">Tablets</option>
 						<option value="notebooks">Notebooks</option>
 						</select>
@@ -118,7 +140,8 @@
 					</div>
 				</div>
 			</form>
-			
 
 
-	</div>
+
+		</div>
+		
