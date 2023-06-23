@@ -36,7 +36,6 @@ cartRouter.post('/:cartId/:productId', async (req, res) => {
     const quantity = req.body.quantity;
     const cartId = req.params.cartId;
     const productId =req.params.productId;
-    console.log(quantity)
     try {
         const addedProduct = await cartService.addProductToCart(cartId, productId, quantity);
         res.status(201).send(addedProduct);
@@ -56,7 +55,19 @@ cartRouter.delete('/:cartId/:productId', async (req, res) => {
 })
 
 cartRouter.delete('/:cartId', async (req, res) => {
-    const cartId = req.params.cartId;
+    const cartId = req.params.cartId
+    try {
+        await cartService.emptyCart(cartId);
+        res.status(204).send(cartId)
+    } catch(err) {
+        res.status(500).send(err);
+    }
+})
+
+
+// Borra un carrito seleccionado (se envia el ID por body)
+cartRouter.delete('/:cartId', async (req, res) => {
+    const cartId = req.body.cartId;
     try {
         await cartService.removeCart(cartId);
         res.status(204).send(cartId)

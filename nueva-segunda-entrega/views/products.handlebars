@@ -1,7 +1,6 @@
 <div><br /></div>
 <div class='container'>
 	<div class='row'>
-
 		<div class='col-md-8'>
 			<h2>Listado de productos</h2>
 			<table class='table'>
@@ -66,32 +65,43 @@
 		</div>
 
 
-		<div class="col-6">
+		<div class="category">
 			<h3>Filtros</h3>
 			<form method='get'>
+
 				<h4>Categorias</h4>
 				<div class="col-6">
 					<select class='form-select' aria-label='Category' name='category' required='true' />
-						<option selected name ='accesorios' value="accesorios">Accesorios</option>
-						<option value="notebooks">Notebooks</option>
-						<option value="monitores">Monitores</option>
-						<option value="tablets">Tablets</option>
-						<option value=''>Todos los productos</option>
+					<option selected value='undefined'>Todos los productos</option>
+					<option value="accesorios">Accesorios</option>
+					<option value="notebooks">Notebooks</option>
+					<option value="monitores">Monitores</option>
+					<option value="tablets">Tablets</option>
 					</select>
-				<h4>Status</h4>
-				<div class="col-6">
-					<select	 class='form-select' aria-label='Status' name='status' required='true' />
+
+					<h4>Precio</h4>
+					<div class="col-6">
+						<select class='form-select' aria-label='Sort' name='sort' required='true'>
+							<option selected value="undefined">Sin ordenar</option>
+							<option value="desc">Precio descendente</option>
+							<option value="asc">Precio ascendente</option>
+						</select>
+					</div>
+
+					<h4>Status</h4>
+					<div class="col-6">
+						<select class='form-select' aria-label='Status' name='status' required='true' />
 						<option selected value="true">True</option>
 						<option value="false">False</option>
-					</select>
-				
-				<button type='submit' class=' btn btn-primary form-control'>
-					Filtrar
-				</button>
-				</div>
+						</select>
+
+						<button type='submit' class=' btn btn-primary form-control'>
+							Filtrar
+						</button>
+					</div>
 			</form>
 		</div>
-		
+
 
 		<div class="col-6">
 			<h2>Alta de Producto</h2>
@@ -147,4 +157,3 @@
 
 
 		</div>
-		
