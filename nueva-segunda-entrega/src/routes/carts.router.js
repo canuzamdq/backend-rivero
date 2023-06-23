@@ -24,9 +24,8 @@ cartRouter.get('/:cartId', async (req, res) => {
 })
 
 cartRouter.post('/', async (req, res) => {
-    const cart = req.body;
     try {
-        const newCart = await cartService.addCart(cart);
+        const newCart = await cartService.addCart();
         res.status(201).send(newCart);
     } catch(err) {
         res.status(500).send(err);
@@ -34,11 +33,23 @@ cartRouter.post('/', async (req, res) => {
 })
 
 cartRouter.post('/:cartId/:productId', async (req, res) => {
+    const quantity = req.body.quantity;
     const cartId = req.params.cartId;
     const productId =req.params.productId;
+    console.log(quantity)
     try {
-        const addedProduct = await cartService.addProductToCart(cartId, productId);
+        const addedProduct = await cartService.addProductToCart(cartId, productId, quantity);
         res.status(201).send(addedProduct);
+    } catch(err) {
+        res.status(500).send(err)
+    }
+})
+
+cartRouter.delete('/:cartId/:productId', async (req, res) => {
+    const {cartId, productId} = req.params
+    try {
+        const deleteProduct = await cartService.deleteProductFromCart(cartId, productId)
+        res.status(201).send(deleteProduct);
     } catch(err) {
         res.status(500).send(err)
     }

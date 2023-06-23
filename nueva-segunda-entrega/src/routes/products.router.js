@@ -12,7 +12,6 @@ producRouter.get('/', async (req, res) => {
         // Agrega status y category a docs
         data.status = status;
         data.category = category;
-        data.sort = sort;
         console.log(data)
         res.status(201).render('products', data);
     } catch (err) {
@@ -21,7 +20,7 @@ producRouter.get('/', async (req, res) => {
 });
 
 producRouter.get('/:productId', async (req, res) => {
-    const productId = req.params.productId;
+    let productId = req.params.productId;
     try {
         const product = await productService.getProductById(productId);
         res.status(201).send(product);

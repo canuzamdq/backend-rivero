@@ -28,9 +28,6 @@ export const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: [
-            'accesorios', 'monitores', 'tablets', 'notebooks'
-        ],
         default: 'accesorios',
         required: true
     },

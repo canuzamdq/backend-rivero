@@ -68,17 +68,19 @@
 
 		<div class="col-6">
 			<h3>Filtros</h3>
-			<form  >
+			<form method='get'>
 				<h4>Categorias</h4>
 				<div class="col-6">
 					<select class='form-select' aria-label='Category' name='category' required='true' />
-						<option selected value="accesorios">Accesorios</option>
-						<option value="notebook">Notebooks</option>
+						<option selected name ='accesorios' value="accesorios">Accesorios</option>
+						<option value="notebooks">Notebooks</option>
 						<option value="monitores">Monitores</option>
+						<option value="tablets">Tablets</option>
+						<option value=''>Todos los productos</option>
 					</select>
 				<h4>Status</h4>
 				<div class="col-6">
-					<select class='form-select' aria-label='Status' name='status' required='true' />
+					<select	 class='form-select' aria-label='Status' name='status' required='true' />
 						<option selected value="true">True</option>
 						<option value="false">False</option>
 					</select>
@@ -89,6 +91,7 @@
 				</div>
 			</form>
 		</div>
+		
 
 		<div class="col-6">
 			<h2>Alta de Producto</h2>

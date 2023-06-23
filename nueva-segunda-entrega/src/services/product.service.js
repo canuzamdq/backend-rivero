@@ -6,9 +6,14 @@ class ProductService {
         this.model = productModel;
     }
 
+    async getAllProductsSinPaginate() {
+		return await this.productModel.find().lean();
+	}
+
+
     async getAllProducts(limit = 10, page = 1, status = undefined, category = undefined, sort = undefined) {
         const filter = {};
-        const orderSort = {};
+        const orderSort = {};   
         
         if (status === 'true') {
             filter.status = true;       
@@ -18,12 +23,12 @@ class ProductService {
 
         if (category === 'monitores') {
             filter.category = 'monitores';
-        } else if (category === 'varios') {
-            filter.category = 'varios';
-        } else if (category === 'tablets') {
-            filter.category === 'tablets';
-        } else if (category === 'notebooks') {
-            filter.category === 'notebooks';
+        } if (category === 'accesorios') {
+            filter.category = 'accesorios';
+        } if (category === 'tablets') {
+            filter.category = 'tablets';
+        } if (category === 'notebooks') {
+            filter.category = 'notebooks';
         }
 
         if (sort === 'desc') {
@@ -49,11 +54,18 @@ class ProductService {
     };
 
         
-    
-
     async getProductById(productId) {
-        return await this.model.findOne({_id: productId});
-    }
+        try {
+          const product = await this.model.findById(productId);
+          if (!product) {
+            throw new Error('Producto no encontrado');
+          }
+          return product;
+        } catch (err) {
+          console.error(err);
+          throw err;
+        }
+      }
 
     async addProduct(product) {
         return this.model.create(product);
