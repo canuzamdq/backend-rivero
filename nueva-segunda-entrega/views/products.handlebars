@@ -63,14 +63,17 @@
 				</ul>
 			</nav>
 		</div>
+	</div>
 
+	<div class="sndContainer">
+		<section class="filters">
+			<div class="tile">
+				<h3>Filtros</h3>
+			</div>
 
-		<div class="category col-6">
-			<h3>Filtros</h3>
 			<form method='get'>
-
-				<h4>Categorias</h4>
-				<div class="col-6">
+				<div class="category">
+					<h4>Categorias</h4>
 					<select class='form-select' aria-label='Category' name='category' required='true' />
 					<option selected value='undefined'>Todos los productos</option>
 					<option value="accesorios">Accesorios</option>
@@ -78,33 +81,38 @@
 					<option value="monitores">Monitores</option>
 					<option value="tablets">Tablets</option>
 					</select>
+				</div>
 
+				<div class="price">
 					<h4>Precio</h4>
-					<div class="col-6">
-						<select class='form-select' aria-label='Sort' name='sort' required='true'>
-							<option selected value="undefined">Sin ordenar</option>
-							<option value="desc">Precio descendente</option>
-							<option value="asc">Precio ascendente</option>
-						</select>
-					</div>
+					<select class='form-select' aria-label='Sort' name='sort' required='true'>
+						<option selected value="undefined">Sin ordenar</option>
+						<option value="desc">Precio descendente</option>
+						<option value="asc">Precio ascendente</option>
+					</select>
+				</div>
 
+				<div class="status">
 					<h4>Status</h4>
-					<div class="col-6">
-						<select class='form-select' aria-label='Status' name='status' required='true' />
-						<option selected value="true">True</option>
-						<option value="false">False</option>
-						</select>
+					<select class='form-select' aria-label='Status' name='status' required='true' />
+					<option selected value="true">True</option>
+					<option value="false">False</option>
+					</select>
+				</div>
 
-						<button type='submit' class=' btn btn-primary form-control'>
-							Filtrar
-						</button>
-					</div>
+				<div class="btnDiv">
+					<button type='submit' class=' btn btn-primary form-control'>
+						Filtrar
+					</button>
+				</div>
+
 			</form>
-		</div>
+		</section>
 
-
-		<div class="col-6">
-			<h2>Alta de Producto</h2>
+		<div class="addProducts">
+			<div class="title">
+				<h2>Alta de Producto</h2>
+			</div>
 			<form action='/api/products' method='post'>
 				<div class='row'>
 					<div class='col-6'>
@@ -153,7 +161,6 @@
 					</div>
 				</div>
 			</form>
-
-
-
 		</div>
+
+	</div>

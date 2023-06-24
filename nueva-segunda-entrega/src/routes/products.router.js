@@ -3,7 +3,13 @@ import {productService} from "../services/product.service.js";
 
 const producRouter = Router();
 
-
+/* 
+Obtiene los productos. Se pueden pasar los siguientes parametros por URL:
+limit = establece un limite de productos a mostrar por página
+page = establece que pagina se quiere visualizar
+category = filtra los productos por su categoría
+sort = ordena por precio ascentende (sort=ascen) o precio descendente (sort=desc)
+*/
 producRouter.get('/', async (req, res) => {
     const {limit, page, status, category, sort} = req.query;
 
@@ -19,6 +25,7 @@ producRouter.get('/', async (req, res) => {
     }
 });
 
+// Obtiene un producto por su ID
 producRouter.get('/:productId', async (req, res) => {
     let productId = req.params.productId;
     try {
@@ -29,7 +36,7 @@ producRouter.get('/:productId', async (req, res) => {
     }
 });
 
-
+// Carga un producto nuevo
 producRouter.post('/', async (req, res) => {
     const product = req.body;
     try {
@@ -40,6 +47,7 @@ producRouter.post('/', async (req, res) => {
     }
 })
 
+// Modifica un producto existente
 producRouter.put('/:productId', async (req, res) => {
     const productId = req.params.productId;
     const product = req.body;
@@ -52,6 +60,7 @@ producRouter.put('/:productId', async (req, res) => {
     }
 })
 
+// Borra un producto
 producRouter.delete('/:productId', async (req, res) => {
     const productId = req.params.productId;
     try {
