@@ -54,10 +54,36 @@ class CartService {
                 cart.products.push(existingProduct);
             }
 
-            return await cart.save();
+            await cart.save();
+            return cart;
+
         } catch (err) {
             console.log(err);
             throw err;
+        }
+    }
+
+    async modifyQantityProductFromCArt(cartId, productId, quantity) {
+        try {
+            const cart = await this.model.findById(cartId);
+            if (!cart) {
+                throw new Error('Carrito no encontrado');
+            }
+    
+            const existingProduct = cart.products.find((item) => item.product.toString() === productId);
+            if (existingProduct) {
+                (existingProduct.quantity = quantity);
+                console.log(existingProduct)
+                await cart.save();
+
+            } else {
+                throw new Error('Producto no encontrado');
+            }
+    
+            return cart;
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
     }
 
@@ -94,8 +120,8 @@ class CartService {
 
         cart.products = []; // Asigna un array vacío para eliminar todos los productos del carrito
         await cart.save();
-
         return cart;
+        
     } catch (err) {
         console.error(err);
         throw err;

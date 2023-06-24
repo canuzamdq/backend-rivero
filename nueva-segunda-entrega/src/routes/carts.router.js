@@ -44,6 +44,18 @@ cartRouter.post('/:cartId/:productId', async (req, res) => {
     }
 })
 
+cartRouter.put('/:cartId/:productId', async (req, res) => {
+    const quantity = req.body.quantity;
+    const cartId = req.params.cartId;
+    const productId =req.params.productId;
+    try {
+        const addedProduct = await cartService.modifyQantityProductFromCArt(cartId, productId, quantity);
+        res.status(201).send(addedProduct);
+    } catch(err) {
+        res.status(500).send(err)
+    }
+})
+
 cartRouter.delete('/:cartId/:productId', async (req, res) => {
     const {cartId, productId} = req.params
     try {
