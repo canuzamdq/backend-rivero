@@ -70,6 +70,22 @@
     justify-content: space-around;
 }
 
-.login-section {
+.login {
+    padding: 0;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: lightsteelblue;
+    border-radius: 5px;
+}
+
+.login-container {
     width: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+
 }
