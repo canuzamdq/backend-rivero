@@ -13,7 +13,7 @@ viewsRouter.get('/', isAuth, async (req, res) => {
         // Agrega status y category a docs
         data.status = status;
         data.category = category;
-        res.status(201).render('products', { user }, data);
+        res.status(201).render('index', {user: user, data: data} );
     } catch (err) {
         res.status(500).send(err);
     }

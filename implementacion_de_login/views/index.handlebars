@@ -1,4 +1,12 @@
 <div class='container'>
+	{{#if user}}
+		<h2>Hola {{user.first_name}}! {{user.rol}}</h2>
+		<form action='/api/users/logout' method='post'>
+			<button class='btn btn-outline-danger' type='submit'>
+				Cerrar Sesión
+			</button>
+		</form>
+	{{/if}}
 	<div class='row'>
 		<div class='col-md-8'>
 			<h2>Listado de productos</h2>
@@ -16,7 +24,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{{#each docs}}
+					{{#each data.docs}}
 					<tr>
 						<td>{{this.title}}</td>
 						<td>{{this.description}}</td>
@@ -34,30 +42,30 @@
 		<div class="col-12 text-area=center">
 			<nav>
 				<ul class="pagination pagination-sm">
-					{{#if hasPrevPage}}<li class="page-item"> {{else}}
+					{{#if data.hasPrevPage}}<li class="page-item"> {{else}}
 					<li class="page-item disabled">{{/if}}
 						<a class="page-link"
-							href="?limit={{limit}}&page={{prevPage}}&status={{status}}&category={{category}}&sort={{sort}}">Previous</a>
+							href="?limit={{data.limit}}&page={{data.prevPage}}&status={{data.status}}&category={{data.category}}&sort={{data.sort}}">Previous</a>
 					</li>
 
 					<li class="page-item">
 						<a class="page-link"
-							href="?limit={{limit}}&page={{prevPage}}&status={{status}}&category={{category}}&sort={{sort}}">{{prevPage}}</a>
+							href="?limit={{data.limit}}&page={{data.prevPage}}&status={{data.status}}&category={{data.category}}&sort={{data.sort}}">{{data.prevPage}}</a>
 					</li>
 
 					<li class="page-item active" aria-current="page">
-						<a class="page-link" href="#">{{page}}</a>
+						<a class="page-link" href="#">{{data.page}}</a>
 					</li>
 
 					<li class="page-item">
 						<a class="page-link"
-							href="?limit={{limit}}&page={{nextPage}}&status={{status}}&category={{category}}&sort={{sort}}">{{nextPage}}</a>
+							href="?limit={{data.limit}}&page={{data.nextPage}}&status={{data.status}}&category={{data.category}}&sort={{data.sort}}">{{data.nextPage}}</a>
 					</li>
 
-					{{#if hasNextPage}}<li class="page-item">{{else}}
+					{{#if data.hasNextPage}}<li class="page-item">{{else}}
 					<li class="page-item disabled">{{/if}}
 						<a class="page-link"
-							href="?limit={{limit}}&page={{nextPage}}&status={{status}}&category={{category}}&sort={{sort}}">Next</a>
+							href="?limit={{data.limit}}&page={{data.nextPage}}&status={{data.status}}&category={{data.category}}&sort={{data.sort}}">Next</a>
 					</li>
 				</ul>
 			</nav>
