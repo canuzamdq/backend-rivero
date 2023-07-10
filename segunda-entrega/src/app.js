@@ -69,22 +69,6 @@ io.on('connection', async (socket) => {
 	}
 
 
-	/*// Escucho los mensajes enviado por el cliente y se los propago a todos
-	socket.on('message', async (message) => {
-		try {
-		// Agrego el mensaje al array de mensajes
-		messages.push(message);
-		// Propago el evento a todos los clientes conectados
-		io.emit('messages', messages);
-		// Grabo usuario y mensaja en la DB
-		await chatServices.saveChat(message);
-		console.log(message.message)
-		} catch (err) {
-			console.log(err)
-		}
-		
-	});*/
-
 	socket.on('message', async (message) => {
 		try {
 		  const chatData = {

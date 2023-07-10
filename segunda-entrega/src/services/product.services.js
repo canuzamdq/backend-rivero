@@ -1,4 +1,5 @@
-import { productModel } from '../models/product.model.js';
+import { productModel, productSchema } from '../models/product.model.js';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 class ProductService {
 	constructor() {
@@ -33,5 +34,5 @@ class ProductService {
 		return await this.productModel.deleteOne({ _id: pId });
 	}
 }
-
+productSchema.plugin(mongoosePaginate)
 export const productService = new ProductService();
