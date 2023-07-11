@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
 	},
 	password: String,
 	img: String,
+	rol: {
+		type: String,
+		default: "user",
+
+	}
 });
 
 const userModel = mongoose.model('users', userSchema);
